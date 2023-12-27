@@ -1,113 +1,124 @@
+"use client"
 import Image from 'next/image'
+import { Slider } from "@material-tailwind/react";
+import { useState } from 'react'
 
 export default function Home() {
+  const [value,setValue] = useState(50)
+  const [check,setCheck] = useState("monthly")
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className=' w-screen h-screen space-y-10 md:space-y-20 flex flex-col justify-center items-center'>
+      <div className=' md:mt-0 pt-20 md:w-[720px] w-10/12 relative flex flex-col'>
+        <div className=' text-center text-custom-1000 text-2xl md:text-3xl font-extrabold'>
+          Simple, traffic-based pricing
+        </div>
+        <div className=' mt-5 text-center font-bold text-custom-900 '>
+          Sign-up for our 30-day trial. No credit card required.
+        </div>
+        <div className='-z-10 -bottom-5 left-[40%] absolute'>
+          <Image
+          src={"/images/pattern-circles.svg"}
+          width={146}
+          height={145}
+          className=' '
+          alt='circle'/>
         </div>
       </div>
+      <div className=' w-11/12 md:w-[720px]  flex flex-col rounded-xl shadow-lg bg-white'>
+        <div className=' relative mt-3 md:mt-10 space-y-16  p-10'>
+          <div className=' flex flex-col md:flex-row justify-normal md:justify-between'>
+            <div className=' uppercase  flex tracking-widest flex-col md:items-start items-center justify-center text-custom-900 font-semibold'>
+              100K PageViews
+            </div>
+            <div className=' flex md:mt-0 mt-32 flex-row justify-center md:justify-normal items-center'>
+              <div className=' text-5xl  text-custom-1000 font-extrabold'>
+                $16.00
+              </div>
+              <div className=' text-custom-900 font-semibold'>
+                / month
+              </div>
+            </div>
+          </div>
+          <div className='px-7 w-full left-0 flex justify-center items-center md:w-full md:static absolute top-16'>  
+            <Slider 
+            className=" text-custom-200  " 
+            barClassName=" bg-custom-100  "
+            thumbClassName=" [&::-moz-range-thumb]:rounded-none [&::-webkit-slider-thumb]:hover:shadow-[0_5px_40px_15px_rgba(165,243,235,01)]  [&::-webkit-slider-thumb]:bg-icon [&::-webkit-slider-thumb]:bg-no-repeat [&::-webkit-slider-thumb]:bg-center  [&::-webkit-slider-thumb]:w-10 [&::-webkit-slider-thumb]:h-10 [&::-moz-range-thumb]:-mt-[4px] [&::-webkit-slider-thumb]:-mt-4"
+            placeholder={""} defaultValue={50} onChange={(e)=>{setValue(parseInt(e.currentTarget.value)),console.log(value)}} value={value}   />
+          </div>
+          <div className=' flex justify-center ml-0 md:ml-28 items-center'>
+            <div className=' flex justify-center items-center flex-row space-x-2 md:space-x-3 '>
+              <div className=' text-custom-900 min-[440px]:text-xs font-semibold'>
+                Monthly Billing 
+              </div>
+              <div className=' flex justify-center items-center'>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" onClick={()=>{{check === "monthly" ? setCheck("yearly") : setCheck("monthly")}}} value={check} className="sr-only peer"/>
+                  <div className="w-11 h-6 bg-custom-800 hover:bg-custom-100 peer-focus:outline-none  peer-focus:ring-blue-300  rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-custom-200"></div>
+                </label>
+              </div>
+              <div className=' text-custom-900 min-[440px]:text-xs font-semibold'>
+                Yearly Billing 
+              </div>
+              <div className=' hidden md:flex text-custom-400 text-xs font-semibold py-1 bg-custom-300 px-2  rounded-full'>
+                25% discount
+              </div>
+              <div className=' md:hidden flex text-custom-400 text-xs font-semibold py-1 bg-custom-300 px-2  rounded-full'>
+                -25%
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr className='h-[2px] w-full bg-custom-700 border-0' />
+        <div className=' p-10'>
+          <div className=' flex flex-col md:flex-row justify-between'>
+            <div className=' flex space-y-3 flex-col'>
+              <div className=' flex flex-row md:justify-start justify-center'>
+                <div className=' flex justify-center items-center'>
+                  <Image
+                  src={"/images/icon-check.svg"}
+                  width={12}
+                  height={11}
+                  alt='check'/>
+                </div>
+                <div className=' text-custom-900 ml-3 font-semibold'>
+                  Unlimited websites 
+                </div>
+              </div>
+              <div className=' flex flex-row md:justify-start justify-center'>
+                <div className=' flex justify-center items-center'>
+                  <Image
+                  src={"/images/icon-check.svg"}
+                  width={12}
+                  height={1}
+                  alt='check'/>
+                </div>
+                <div className=' text-custom-900 ml-3 font-semibold'>
+                  100% data ownership
+                </div>
+              </div>
+              <div className=' flex flex-row md:justify-start justify-center'>
+                <div className=' flex justify-center items-center'>
+                  <Image
+                  src={"/images/icon-check.svg"}
+                  width={12}
+                  height={11}
+                  alt='check'/>
+                </div>
+                <div className=' text-custom-900 ml-3 font-semibold'>
+                  Email reports 
+                </div>
+              </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+            </div>
+            <div className='md:mt-0 mt-10 flex justify-center items-center'>
+              <button className=' text-custom-800 font-extrabold bg-custom-1000 py-3 px-10 rounded-full'>
+                Start my trial
+              </button>
+            </div>
+          </div>
+        </div>
+
       </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
-}
+    </div>
+  )}
