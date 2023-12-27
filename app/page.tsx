@@ -28,11 +28,11 @@ export default function Home() {
         <div className=' relative mt-3 md:mt-10 space-y-16  p-10'>
           <div className=' flex flex-col md:flex-row justify-normal md:justify-between'>
             <div className=' uppercase  flex tracking-widest flex-col md:items-start items-center justify-center text-custom-900 font-semibold'>
-              100K PageViews
+              {value*2}K PageViews
             </div>
             <div className=' flex md:mt-0 mt-32 flex-row justify-center md:justify-normal items-center'>
               <div className=' text-5xl  text-custom-1000 font-extrabold'>
-                $16.00
+                ${check === "monthly" ? (value/3.125).toFixed(2) : ((value/3.125)*0.75).toFixed(2)}
               </div>
               <div className=' text-custom-900 font-semibold'>
                 / month
@@ -44,7 +44,7 @@ export default function Home() {
             className=" text-custom-200  " 
             barClassName=" bg-custom-100  "
             thumbClassName=" [&::-moz-range-thumb]:rounded-none [&::-webkit-slider-thumb]:hover:shadow-[0_5px_40px_15px_rgba(165,243,235,01)]  [&::-webkit-slider-thumb]:bg-icon [&::-webkit-slider-thumb]:bg-no-repeat [&::-webkit-slider-thumb]:bg-center  [&::-webkit-slider-thumb]:w-10 [&::-webkit-slider-thumb]:h-10 [&::-moz-range-thumb]:-mt-[4px] [&::-webkit-slider-thumb]:-mt-4"
-            placeholder={""} defaultValue={50} onChange={(e)=>{setValue(parseInt(e.currentTarget.value)),console.log(value)}} value={value}   />
+            placeholder={""} defaultValue={50} onChange={(e)=>{setValue(parseInt(e.currentTarget.value))}}  value={value}   />
           </div>
           <div className=' flex justify-center ml-0 md:ml-28 items-center'>
             <div className=' flex justify-center items-center flex-row space-x-2 md:space-x-3 '>
